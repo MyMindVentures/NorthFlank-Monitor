@@ -1,0 +1,50 @@
+{
+  "name": "northflank-monitor",
+  "description": "Real-time NorthFlank monitoring and testing system - Monitors all projects, services, and automatically tests endpoints",
+  "serviceType": "combined",
+  "billing": {
+    "buildPlan": "nf-compute-400-16",
+    "deploymentPlan": "nf-compute-100-1"
+  },
+  "deployment": {
+    "instances": 2,
+    "region": "europe-west",
+    "ports": [
+      {
+        "name": "http",
+        "port": 3002,
+        "internalPort": 3002,
+        "protocol": "http",
+        "public": true
+      },
+      {
+        "name": "websocket",
+        "port": 8080,
+        "internalPort": 8080,
+        "protocol": "tcp",
+        "public": true
+      }
+    ]
+  },
+  "build": {
+    "type": "dockerfile",
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "vcsData": {
+    "projectUrl": "https://github.com/MyMindVentures/NorthFlank-Monitor",
+    "projectType": "github",
+    "projectBranch": "main"
+  },
+  "environment": {
+    "PORT": "3002",
+    "NODE_ENV": "production",
+    "DATABASE_PATH": "/app/data/monitor.db",
+    "LOG_LEVEL": "info"
+  },
+  "secrets": {
+    "source": "doppler",
+    "project": "northflank-monitor",
+    "config": "prd"
+  }
+}
