@@ -26,10 +26,11 @@
       }
     ]
   },
-  "build": {
-    "type": "dockerfile",
-    "dockerfile": "Dockerfile",
-    "context": "."
+  "buildSettings": {
+    "dockerfile": {
+      "dockerFilePath": "/Dockerfile",
+      "dockerWorkDir": "/"
+    }
   },
   "vcsData": {
     "projectUrl": "https://github.com/MyMindVentures/NorthFlank-Monitor",
