@@ -1,6 +1,9 @@
 # Multi-stage build for NorthFlank Monitor
 FROM node:18-alpine AS builder
 
+# Install curl and wget for health checks
+RUN apk add --no-cache curl wget
+
 # Set working directory
 WORKDIR /app
 
@@ -13,6 +16,9 @@ COPY . .
 
 # Production stage
 FROM node:18-alpine AS production
+
+# Install curl and wget for health checks
+RUN apk add --no-cache curl wget
 
 # Create app directory
 WORKDIR /app
